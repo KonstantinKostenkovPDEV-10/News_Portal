@@ -1,0 +1,33 @@
+<!--  наследуемся от шаблона default.html-->
+{% extends 'flatpages/default.html' %} 
+{% load censor_filter %}
+
+{% block title %}
+post
+{% endblock title %}
+
+{% block content %}
+<h1></h1>
+<h1></h1>
+<hr>
+<h1>Все новости</h1>
+<table border=3>
+   <tr>
+    		<th>Заголовок</th>
+            <th>Дата</th>
+            <th>Новость с цензурой</th>
+            <th>Укороченная новость</th>
+	
+  </tr>
+{% for p in post %}
+   <tr>
+	<td>{{ p.title_news}}</td>
+    <td>{{ p.date_time_create}}</td>
+	<td>{{ p.post|check_words }}</td>
+    <td>{{ p.post|truncatechars:20 }}</td>
+   </tr>
+{% endfor %}
+</table>
+
+{% endblock content %}
+
