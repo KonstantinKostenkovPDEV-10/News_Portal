@@ -79,12 +79,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/NewsPaper/NewsPaper/settings.py</url>
-          <line>46</line>
+          <line>48</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/NewsPaper/News/views.py</url>
-          <line>4</line>
+          <line>5</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
