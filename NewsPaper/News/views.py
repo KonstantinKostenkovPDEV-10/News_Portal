@@ -1,7 +1,7 @@
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 from .models import Post
 from .filters import PostFilter
-from django.views.generic import ListView
+from .forms import PostForm
 
 class PostList(ListView):
     model = Post
@@ -10,10 +10,6 @@ class PostList(ListView):
     context_object_name = 'post'
     paginate_by = 1
     def get_context_data(self, **kwargs):
-        # С помощью super() мы обращаемся к родительским классам
-        # и вызываем у них метод get_context_data с теми же аргументами,
-        # что и были переданы нам.
-        # В ответе мы должны получить словарь.
         context = super().get_context_data(**kwargs)
         context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
         return context
@@ -22,8 +18,25 @@ class PostDetail(DetailView):
     model = Post
     template_name = 'post_detail.html'
     context_object_name = 'post'
-    paginate_by = 1
+    queryset = Post.objects.all()
 
+class PostCreateView(CreateView):
+    template_name = 'post_create.html'
+    form_class = PostForm
+
+
+class PostUpdateView(UpdateView):
+    template_name = 'post_create.html'
+    form_class = PostForm
+    def get_object(self, **kwargs):
+        id = self.kwargs.get('pk')
+        return Post.objects.get(pk=id)
+
+# дженерик для удаления товара
+class PostDeleteView(DeleteView):
+    template_name = 'post_delete.html'
+    queryset = Post.objects.all()
+    success_url = '/post/'
 
 
 

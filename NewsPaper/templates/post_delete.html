@@ -1,0 +1,26 @@
+<!--  наследуемся от шаблона default.html, который мы создавали для flatpages -->
+{% extends 'flatpages/default.html' %}
+
+{% load censor_filter %}
+<!-- Название у нас будет news -->
+{% block title %}
+post
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим все товары -->
+{% block content %}
+<hr>
+<hr>
+<h2>Вы действительно хотите удалить данный пост?</h2>
+
+<hr>
+<p>{{ post.title_news }}</p>
+<p>{{ post.post }}</p>
+<p>{{ post.date_time_create}}</p>
+
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="подтвердить"></form>
+{% endblock content %}
+

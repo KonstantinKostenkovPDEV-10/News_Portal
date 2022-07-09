@@ -45,6 +45,8 @@ class Post(models.Model):
     def preview(self):
         return self.post[0:124] + '...'
 
+    def get_absolute_url(self):  # добавим абсолютный путь, чтобы после создания нас перебрасывало на страницу с товаром
+        return f'/post/{self.id}'
     pass
 
 class PostCategory(models.Model):
