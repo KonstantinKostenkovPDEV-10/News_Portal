@@ -26,7 +26,7 @@ class PostDetail(DetailView):
     context_object_name = 'post'
     queryset = Post.objects.all()
 
-@method_decorator(login_required(login_url="/accounts/login/"), name='dispatch')
+@method_decorator(login_required(login_url="/sign/login/"), name='dispatch')
 class PostCreateView(PermissionRequiredMixin, CreateView):
     template_name = 'post_create.html'
     permission_required = ('News.add_Post',)
@@ -34,7 +34,7 @@ class PostCreateView(PermissionRequiredMixin, CreateView):
 
 
 # дженерик для редактирования объекта
-@method_decorator(login_required(login_url="/accounts/login/"), name='dispatch')
+@method_decorator(login_required(login_url="/sign/login/"), name='dispatch')
 class PostUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     template_name = 'post_create.html'
     permission_required = ('News.change_Post',)
@@ -44,7 +44,7 @@ class PostUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
         return Post.objects.get(pk=id)
 
 # дженерик для удаления товара
-@method_decorator(login_required(login_url="/accounts/login/"), name='dispatch')
+@method_decorator(login_required(login_url="/sign/login/"), name='dispatch')
 class PostDeleteView(PermissionRequiredMixin, DeleteView):
     template_name = 'post_delete.html'
     queryset = Post.objects.all()
