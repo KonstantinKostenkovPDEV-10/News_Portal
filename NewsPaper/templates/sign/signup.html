@@ -1,0 +1,24 @@
+<!--  наследуемся от шаблона default.html, который мы создавали для flatpages -->
+{% extends 'main.html' %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<hr>
+<h1>{% trans "Sign Up" %}</h1>
+
+<p>{% blocktrans %}У вас есть уже учетная запись? Тогда войдите в систему <a href="/sign/login">Вход</a>.{% endblocktrans %}</p>
+
+<form class="signup" id="signup_form" method="post" action="{% url 'signup' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
+</form>
+
+{% endblock %}

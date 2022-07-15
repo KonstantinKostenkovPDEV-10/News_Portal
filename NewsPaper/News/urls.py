@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from .views import PostList, PostDetail, PostCreateView, PostUpdateView, PostDeleteView
 
 urlpatterns = [
@@ -11,4 +11,6 @@ urlpatterns = [
     path('create/', PostCreateView.as_view(), name='post_create'),
     path('create/<int:pk>', PostUpdateView.as_view(), name='post_update'),
     path('delete/<int:pk>', PostDeleteView.as_view(), name='post_delete'),
+
+
 ]

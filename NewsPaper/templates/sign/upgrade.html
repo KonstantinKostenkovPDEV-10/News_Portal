@@ -1,0 +1,14 @@
+
+{% extends "main.html" %}
+
+
+{% block content %}
+
+<hr>
+<h2>Страница авторизованного пользователя {{user.username}}</h2>
+<div> Здесь может содержаться персональная информация для каждого пользователя </div>
+
+<button> <a href="{{upgrade}}">Стать автором</a> </button>
+
+<button> <a href="{% url 'logout' %}">Выход</a></button>
+{% endblock %}

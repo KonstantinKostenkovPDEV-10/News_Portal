@@ -79,23 +79,53 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/NewsPaper/NewsPaper/settings.py</url>
-          <line>48</line>
+          <line>51</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/NewsPaper/News/views.py</url>
-          <line>5</line>
+          <line>11</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/NewsPaper/News/views.py</url>
-          <line>31</line>
+          <line>42</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/NewsPaper/News/views.py</url>
-          <line>29</line>
-          <option name="timeStamp" value="7" />
+          <line>17</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/NewsPaper/NewsPaper/settings.py</url>
+          <line>141</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/NewsPaper/News/views.py</url>
+          <line>41</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/NewsPaper/News/models.py</url>
+          <line>27</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/NewsPaper/NewsPaper/urls.py</url>
+          <line>22</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/NewsPaper/sign/models.py</url>
+          <line>20</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/NewsPaper/sign/models.py</url>
+          <line>26</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

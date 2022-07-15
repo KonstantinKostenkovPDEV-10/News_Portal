@@ -1,7 +1,13 @@
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 from .models import Post
+
 from .filters import PostFilter
 from .forms import PostForm
+
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
 
 class PostList(ListView):
     model = Post
@@ -20,23 +26,29 @@ class PostDetail(DetailView):
     context_object_name = 'post'
     queryset = Post.objects.all()
 
-class PostCreateView(CreateView):
+@method_decorator(login_required(login_url="/accounts/login/"), name='dispatch')
+class PostCreateView(PermissionRequiredMixin, CreateView):
     template_name = 'post_create.html'
+    permission_required = ('News.add_Post',)
     form_class = PostForm
 
 
-class PostUpdateView(UpdateView):
+# дженерик для редактирования объекта
+@method_decorator(login_required(login_url="/accounts/login/"), name='dispatch')
+class PostUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     template_name = 'post_create.html'
+    permission_required = ('News.change_Post',)
     form_class = PostForm
     def get_object(self, **kwargs):
         id = self.kwargs.get('pk')
         return Post.objects.get(pk=id)
 
 # дженерик для удаления товара
-class PostDeleteView(DeleteView):
+@method_decorator(login_required(login_url="/accounts/login/"), name='dispatch')
+class PostDeleteView(PermissionRequiredMixin, DeleteView):
     template_name = 'post_delete.html'
     queryset = Post.objects.all()
     success_url = '/post/'
-
+    permission_required = ('News.delete_Post', )
 
 

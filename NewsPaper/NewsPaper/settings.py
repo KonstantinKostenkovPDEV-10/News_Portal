@@ -41,10 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'News',
     'django_filters',
-
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google'
     ]
 
-SITE_ID = 1
+SITE_ID = 2
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,6 +77,8 @@ TEMPLATES = [
         },
     },
 ]
+
+
 
 WSGI_APPLICATION = 'NewsPaper.wsgi.application'
 
@@ -137,3 +142,46 @@ STATICFILES_DIRS = [
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+LOGIN_URL = '/sign/login/'
+LOGOUT_URL = '/sign/logout/'
+
+
+
+ACCOUNT_EMAIL_CONFIPMATION_EXPIRE_DAYS=1
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+ACCOUNT_USERNAME_MIN_LENGTH=4
+ACCOUNT_USERNAME_REQUIRED = False
+
+ACCOUNT_UNIQUE_EMAIL = True
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_FORMS = {'signup': 'sign.models.BasicSignupForm'
+                 }
+
+EMAIL_BACKEND ='django.core.mail.backends.dummy.EmailBackend'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '126084609479-9qvgfq134gsgsm4ano5skp8f32r23llk.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
