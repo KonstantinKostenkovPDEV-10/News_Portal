@@ -33,7 +33,7 @@ class PostCreateView(PermissionRequiredMixin, CreateView):
     form_class = PostForm
 
 
-# дженерик для редактирования объекта
+
 @method_decorator(login_required(login_url="/sign/login/"), name='dispatch')
 class PostUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     template_name = 'post_create.html'
@@ -43,7 +43,7 @@ class PostUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
         id = self.kwargs.get('pk')
         return Post.objects.get(pk=id)
 
-# дженерик для удаления товара
+
 @method_decorator(login_required(login_url="/sign/login/"), name='dispatch')
 class PostDeleteView(PermissionRequiredMixin, DeleteView):
     template_name = 'post_delete.html'

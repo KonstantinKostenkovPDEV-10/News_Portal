@@ -11,7 +11,7 @@ class BaseRegisterView(CreateView):
     success_url = '/news/'
 
 
-def upgrade(request):
+def update(request):
     user = request.user
     authors_group = Group.objects.get(name='authors')
     if not request.user.groups.filter(name='authors').exists():
