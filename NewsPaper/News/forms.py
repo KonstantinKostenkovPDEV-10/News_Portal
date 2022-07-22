@@ -1,5 +1,6 @@
 from django.forms import ModelForm, BooleanField
-from .models import Post
+from .models import Post,Subscribers,Category
+from django.forms import ModelForm, ModelMultipleChoiceField, CheckboxSelectMultiple
 
 class PostForm(ModelForm):
     # в класс мета, как обычно, надо написать модель, по которой будет строиться форма и нужные нам поля. Мы уже делали что-то похожее с фильтрами.
@@ -13,3 +14,11 @@ class PostForm(ModelForm):
                   'rating_news',
 
                   ]
+class SubscribeForm(ModelForm):
+    class Meta:
+        model = Subscribers
+        fields = [
+                    'category_subscribers'
+
+                  ]
+

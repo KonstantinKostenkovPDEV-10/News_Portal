@@ -1,6 +1,6 @@
-from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Sum
+from django.db import models
 
 
 class Author(models.Model):  # наследуемся от класса Model
@@ -16,11 +16,14 @@ class Author(models.Model):  # наследуемся от класса Model
         rating_post_comment_author: int = p3['rating_comment__sum']
         self.rating_author = rating_post_author+rating_all_comment_author+rating_post_comment_author
         self.save()
-    pass
+    def __str__(self):
+        return f'{self.user}'
 
 class Category(models.Model):
     category_name = models.CharField(max_length=128)
-    pass
+    def __str__(self):
+        return f'{self.category_name}'
+
 
 class Post(models.Model):
     types = [
@@ -47,12 +50,12 @@ class Post(models.Model):
 
     def get_absolute_url(self):  # добавим абсолютный путь, чтобы после создания нас перебрасывало на страницу с товаром
         return f'/post/{self.id}'
-    pass
+
 
 class PostCategory(models.Model):
     category_name = models.ForeignKey(Category, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    pass
+
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
@@ -68,4 +71,10 @@ class Comment(models.Model):
     def dislike(self):
         self.rating_comment -= 1
         self.save()
-    pass
+
+class Subscribers(models.Model):
+    category_subscribers = models.ForeignKey(Category, on_delete=models.CASCADE)
+    user_subscribers = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+

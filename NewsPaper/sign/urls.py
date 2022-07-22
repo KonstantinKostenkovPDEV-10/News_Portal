@@ -20,4 +20,5 @@ urlpatterns = [
          name = 'upgrade'),
     path('update/',update,name='update'),
     path('accounts/', include('allauth.urls')),
+
     ]

@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'django-insecure--vg2i+!)8=f@d#kw_a2v09x5ewy3k_8o--2vim7i-aur%t%_yk
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -39,13 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.flatpages',
-    'News',
+    'django.core.mail',
+    'News.apps.NewsConfig',
     'django_filters',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.google'
-    ]
+    'allauth.socialaccount.providers.google',
+    'sign'
+]
 
 SITE_ID = 1
 
@@ -78,10 +78,7 @@ TEMPLATES = [
     },
 ]
 
-
-
 WSGI_APPLICATION = 'NewsPaper.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -92,7 +89,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -112,7 +108,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -125,7 +120,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -143,18 +137,16 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 LOGIN_REDIRECT_URL = '/'
-#LOGOUT_REDIRECT_URL = '/'
+# LOGOUT_REDIRECT_URL = '/'
 
 LOGIN_URL = '/sign/login/'
 LOGOUT_URL = '/sign/logout/'
 
-
-
-ACCOUNT_EMAIL_CONFIPMATION_EXPIRE_DAYS=1
+ACCOUNT_EMAIL_CONFIPMATION_EXPIRE_DAYS = 1
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
-ACCOUNT_USERNAME_MIN_LENGTH=4
+ACCOUNT_USERNAME_MIN_LENGTH = 4
 ACCOUNT_USERNAME_REQUIRED = False
 
 ACCOUNT_UNIQUE_EMAIL = True
@@ -162,8 +154,6 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_FORMS = {'signup': 'sign.models.BasicSignupForm'
                  }
-
-EMAIL_BACKEND ='django.core.mail.backends.dummy.EmailBackend'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '126084609479-9qvgfq134gsgsm4ano5skp8f32r23llk.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
@@ -184,4 +174,20 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'admin008@mail.ru'
+EMAIL_HOST_PASSWORD = "5cqweYjVfiBBNPo2LyTZ"
+EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL='admin008@mail.ru'
 
+ADMINS = [
+    ('Konstantin', 'Kostenkov67@gmail.com'),
+
+]
+SERVER_EMAIL = 'admin008@mail.ru'
+MANAGERS = [
+    ('Konstantin', 'admin008@mail.ru'),
+
+]

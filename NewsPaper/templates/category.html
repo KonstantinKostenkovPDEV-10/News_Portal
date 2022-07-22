@@ -1,0 +1,26 @@
+<!--  наследуемся от шаблона default.html, который мы создавали для flatpages -->
+{% extends 'flatpages/default.html' %} 
+
+{% block title %}
+category
+{% endblock title %}
+
+
+{% block content %}
+<hr>
+<form method="post" action="{% url 'category' %}">
+ {% csrf_token %}
+		<select name="select">
+			{% for cat in category %}
+			<option value="{{ cat.id}}">{{ cat.category_name}}</option>
+			{% endfor %}
+		</select>
+   
+   <input type="submit" value="Подписаться">
+   </form>
+
+{% endblock content %}
+
+
+	
+
