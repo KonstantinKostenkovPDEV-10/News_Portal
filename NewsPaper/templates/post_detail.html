@@ -8,10 +8,35 @@ post
 
 {% block content %}
 <hr>
-<p>{{ post.title_news }}</p>
-<p>{{ post.post }}</p>
-<p>{{ post.date_time_create}}</p>
+<p><h2>{{ post.title_news }}</h2></p>
+<p>Дата создания {{ post.date_time_create}}</p>
+<td>{{ post.post }}</td>
 
+<hr>
+<h1>Коментарии</h1>
+<ul>
 
+{% for item in post.post_comment.all %}
+<li>
+<td>Дата создания: {{item.date_create}}</td><br>
+<td>Автор: {{item.user}}</td><br>
+<td>{{item.comment_text}}</td><br>
+</li>
+{% endfor %}
+<ul>
+<p>Добавить новый комментарий:</p>
+{%if messages %}
+{%for m in messages%}
+<span style="background-color: #FFFF00">{{m}}</span>
+{%endfor%}
+{%endif%}
+
+<div.class="col-4" >
+<form action="" id="add_form" method="post" >
+  {% csrf_token %}
+{{form.as_p}}
+ <button form="add_form" type="submit">Добавить</button>
+</form>
+</div>
 {% endblock content %}
 

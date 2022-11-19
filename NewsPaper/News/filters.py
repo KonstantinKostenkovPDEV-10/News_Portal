@@ -1,4 +1,4 @@
-from django_filters import FilterSet  # импортируем filterset, чем-то напоминающий знакомые дженерики
+from django_filters import FilterSet
 from .models import Post
 
 

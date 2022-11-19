@@ -17,7 +17,7 @@ Post
     <input type="submit" value="Найти">
 </form>
 
-<table border=3>
+<table border=1>
    <tr>
     		<th>Заголовок</th>
             <th>Дата</th>
@@ -27,14 +27,18 @@ Post
   </tr>
   
  {% for p in filter.qs %}
-   <tr>
-	<td><a href="{% url 'post_detail' p.id %}">{{ p.id }}</a> 
-	    <a href="{% url 'post_update' p.id %}"><u>Редактировать</u></a> <!-- добавим ссылку на редактирование -->
-		<a href="{% url 'post_delete' p.id %}"><u> Удалить </u></a> <!-- добавим ссылку на удаление-->
-	</td>	
-	<td>{{ p.date_time_create}}</td>
+ <tr>
+    <td>
+	<a href="{% url 'post_detail' p.id %}">{{ p.title_news }}</a> 
+	</td>
+   	<td>{{ p.date_time_create}}</td>
 	<td>{{ p.post|check_words }}</td>
     <td>{{ p.post|truncatechars:20 }}</td>
+	<td>
+		<a href="{% url 'post_update' p.id %}"><u>Редактировать</u></a> <!-- добавим ссылку на редактирование -->
+		<a href="{% url 'post_delete' p.id %}"><u> Удалить </u></a> <!-- добавим ссылку на удаление-->
+	</td>
+	</td>	
     </tr>
 {% endfor %}	
 	<a href="{% url 'post_create' %}">Добавить новую запись</a> <br>

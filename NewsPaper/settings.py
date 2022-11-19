@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'sign'
+    'sign.apps.SignConfig',
 ]
 
 SITE_ID = 1
@@ -177,7 +177,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.mail.ru'
-EMAIL_PORT = 465
+EMAIL_PORT = 25
 EMAIL_HOST_USER = 'admin008@mail.ru'
 EMAIL_HOST_PASSWORD = "5cqweYjVfiBBNPo2LyTZ"
 EMAIL_USE_SSL = True

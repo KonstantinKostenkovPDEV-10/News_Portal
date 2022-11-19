@@ -21,8 +21,17 @@ class Author(models.Model):  # наследуемся от класса Model
 
 class Category(models.Model):
     category_name = models.CharField(max_length=128)
+    subscribers_usr = models.ManyToManyField(User,through='Subscribers')
     def __str__(self):
         return f'{self.category_name}'
+    def get_subscribers_emails(self):
+        QuerySubs = Subscribers.objects.filter(category_id=self).values('user_id')
+        QuerySet_email = User.objects.filter(id__in=QuerySubs).values('email')
+        _emails = list()
+        for qs in QuerySet_email:
+            emails = qs.get('email')
+            _emails.append(emails)
+        return _emails
 
 
 class Post(models.Model):
@@ -30,12 +39,13 @@ class Post(models.Model):
         ('N', 'Новость'),
         ('S', 'Статья'),
         ]
-    user = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
     type_post = models.CharField(max_length=1, choices=types)
     post = models.TextField()
     date_time_create = models.DateField(auto_now_add=True)
     title_news = models.CharField(max_length=255)
     rating_news = models.IntegerField(default=0)
+    post_category = models.ManyToManyField(Category, through='PostCategory')
 
     def like(self):
         self.rating_news += 1
@@ -48,17 +58,17 @@ class Post(models.Model):
     def preview(self):
         return self.post[0:124] + '...'
 
-    def get_absolute_url(self):  # добавим абсолютный путь, чтобы после создания нас перебрасывало на страницу с товаром
+    def get_absolute_url(self):
         return f'/post/{self.id}'
 
 
 class PostCategory(models.Model):
-    category_name = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE,related_name='post_comment')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     comment_text = models.TextField()
     date_create = models.DateField(auto_now_add=True)
@@ -73,8 +83,13 @@ class Comment(models.Model):
         self.save()
 
 class Subscribers(models.Model):
-    category_subscribers = models.ForeignKey(Category, on_delete=models.CASCADE)
-    user_subscribers = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+
+
+
+
 
 
 

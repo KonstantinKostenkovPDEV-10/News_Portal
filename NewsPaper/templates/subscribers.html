@@ -8,16 +8,19 @@ subscribers
 
 {% block content %}
 <hr>
-<form method="POST">
+
+
+<form method="POST"action="{% url 'subscribers' %}">
 <hr>
 <hr>
-<hr>
-    {% csrf_token %}
-    {{ form }} 
-	{{ user.username}}
-	
-    <input type="submit" value="Подписаться">
+<p>Выберите категорию новости</p>
+{% csrf_token %}
+{{form}}
+<input type="submit" value="Подписаться">
+
+
 </form>
+
 
 {% endblock content %}
 

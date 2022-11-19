@@ -1,5 +1,5 @@
 
-{% extends "main.html" %}
+{% extends 'flatpages/default.html' %} 
 
 
 {% load i18n %}
@@ -15,11 +15,11 @@
 
 <form method="post" action="{% url 'logout' %}">
   {% csrf_token %}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-  {% endif %}
   <button type="submit">{% trans 'Выйти' %}</button>
-</form>
+
+
+  <input type="submit" value="Выйти">
+  </form>
 
 
 {% endblock %}

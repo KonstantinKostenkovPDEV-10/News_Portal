@@ -11,9 +11,14 @@ post
 <form method="POST">
 <hr>
 <hr>
+<p>Выберите категорию новости</p>
+
+
+
+
 <hr>
     {% csrf_token %}
-    {{ form }} <!-- Теперь нам нужна только готовая форма и кнопка -->
+    {{ form.as_p }} <!-- Теперь нам нужна только готовая форма и кнопка -->
     <input type="submit" value="Опубликовать">
 </form>
 {% endblock content %}

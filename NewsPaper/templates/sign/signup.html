@@ -1,5 +1,5 @@
 
-{% extends 'main.html' %}
+{% extends 'flatpages/default.html' %} 
 
 {% load i18n %}
 {% load account socialaccount %}
@@ -12,7 +12,7 @@
 
 <p>{% blocktrans %}У вас есть уже учетная запись? Тогда войдите в систему <a href="/sign/login">Вход</a>.{% endblocktrans %}</p>
 
-<form class="signup" id="signup_form" method="post" action="{% url 'signup' %}">
+<form method="post" action="{% url 'signup' %}">
   {% csrf_token %}
   {{ form.as_p }}
   {% if redirect_field_value %}

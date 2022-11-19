@@ -1,5 +1,5 @@
 
-{% extends "main.html" %}
+{% extends 'flatpages/default.html' %} 
 
 {% load socialaccount %}
 
@@ -19,9 +19,11 @@
 </tr>
 </table>
 
+
+
 <input type="submit" value="Войти">
 <a href="{% provider_login_url 'google' %}">Login With Google</a>
 </form>
- 
+
 <button> <a href="/sign/signup"> Регистрация </a></button>
 {% endblock %}
