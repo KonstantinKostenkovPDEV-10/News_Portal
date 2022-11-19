@@ -1,0 +1,35 @@
+<!--  наследуемся от шаблона default.html, который мы создавали для flatpages -->
+{% extends 'flatpages/default.html' %} 
+
+{% block title %}
+subscribers
+{% endblock title %}
+
+
+{% block content %}
+<hr>
+
+
+<form method="POST"action="">
+<hr>
+<hr>
+{% csrf_token %}
+<p>Вы подписались на категорию новостей <h2><i>{{ Subscribers_user}}</i></h2></p>
+
+
+
+
+
+
+
+
+
+
+</form>
+
+
+{% endblock content %}
+
+
+	
+
