@@ -1,7 +1,7 @@
-from django.conf.urls import url
 from .jobs import job_scheduler
-from django.urls import path
 from .views import PostList, PostDetail, PostCreateView, PostUpdateView, PostDeleteView, SubscribersView, AddAuthorView
+from django.urls import path
+
 
 urlpatterns = [
     path('', PostList.as_view()),
@@ -11,5 +11,5 @@ urlpatterns = [
     path('delete/<int:pk>', PostDeleteView.as_view(), name='post_delete'),
     path('subscribers/', SubscribersView.as_view(),name='subscribers'),
     path('upgrade/',AddAuthorView.as_view(template_name='upgrade.html'),name='upgrade'),
-]
+    ]
 job_scheduler()

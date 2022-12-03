@@ -1,15 +1,12 @@
 import datetime
 import logging
 
-from django.contrib.auth.models import User
 from .models import Post, Category, Subscribers, PostCategory
 from django.conf import settings
 from apscheduler.schedulers.background import BackgroundScheduler
-from apscheduler.triggers.cron import CronTrigger
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.template.loader import render_to_string
-from django_apscheduler.jobstores import DjangoJobStore
-from email.mime.text import MIMEText
+from .tasks import del_task
 
 
 logger = logging.getLogger(__name__)
@@ -32,13 +29,10 @@ def my_job():
         msg.attach_alternative(html_content, "text/html")
         msg.send()
 
-
-
-
-
 def job_scheduler():
     scheduler = BackgroundScheduler(timezone=settings.TIME_ZONE)
     scheduler.add_job(my_job, 'cron', day_of_week='fri', hour=21,id='my_job_id')
     logger.info("Added job 'my_job'.")
-    logger.info("Starting scheduler...")
+    logger.info("Starting job_scheduler...")
     scheduler.start()
+

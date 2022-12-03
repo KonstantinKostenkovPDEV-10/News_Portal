@@ -1,13 +1,9 @@
-import datetime
 from django.contrib import messages
-from django.http import HttpResponse
-from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView, TemplateView
 from django.views.generic.edit import FormMixin
 from .models import Post, Subscribers, Category,PostCategory,Comment
 from django.contrib.auth.models import User
 from .signals import limit_post
-from django.core.management.base import BaseCommand
 from django.contrib.auth.models import Group,UserManager
 from .filters import PostFilter
 from .forms import PostForm,SubscribeForm,CommentForm,CategoryForm
@@ -16,7 +12,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, reverse, redirect
 from .models import Subscribers,Author
-from apscheduler.schedulers.background import BackgroundScheduler
+
 
 
 class PostList(ListView):
@@ -85,13 +81,9 @@ class PostCreateView(LoginRequiredMixin, PermissionRequiredMixin,CreateView):
                          title_news=request.POST.get('title_news'),
                          post=request.POST.get('post'),
                         )
-        #print(request.POST.get('post_category'))
         New_Post.save(request.POST)
-        #New_Post_Category = Category.objects.all()[2]
         New_Post_Category = request.POST.get('post_category')
         New_Post.post_category.add(New_Post_Category)
-        #New_Post_Cat.save
-
 
         return redirect('/')
 
@@ -171,5 +163,4 @@ class SubscribersView(LoginRequiredMixin, CreateView):
         Subscribers_user=Sub.get()
 
         return render(request, 'subscribers_user.html',context={'form': bound_form,'Subscribers_user':Subscribers_user})
-
 
