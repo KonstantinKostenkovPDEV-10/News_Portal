@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 cd NewsPaper
 python manage.py shell
 
@@ -97,3 +98,104 @@ n=Comment.objects.filter(post__in=Post.objects.filter(user_id=1).values('id')).a
 n=auth_user.objects.filter(post__in=Author.objects.order_by('rating_author').values('id').first())
 
 n=User.objects.filter(post__in=Author.objects.order_by('-rating_author').values('id')).values('username') 
+=======
+cd NewsPaper
+python manage.py shell
+
+from django.contrib.auth.models import User
+User.objects.create_user(username='user1',first_name='user1_first_name',last_name='user1_last_name',email='user1@email.com')
+User.objects.create_user(username='user2',first_name='user2_first_name',last_name='user2_last_name',email='user2@email.com')
+
+
+from News.models import Author
+Author.objects.create(user_id=1)
+Author.objects.create(user_id=2)
+
+
+from News.models import Category
+Category.objects.create(category_name='политика')
+Category.objects.create(category_name='спорт')
+Category.objects.create(category_name='образование')
+Category.objects.create(category_name='социальное обеспечение')
+
+
+from News.models import Post
+Post.objects.create(post='Это статья о спорте.В ней описано много интересного.',title_news='В большом спорте большие проблемы',type_post='S',rating_news=5,user_id=2)
+Post.objects.create(post='Это статья о политике.В ней твориться что-то неописуемое.',title_news='Опять на большой арене политики что-то случилось.',type_post='S',rating_news=10,user_id=1)
+Post.objects.create(post='Это новость в сфере образования.',title_news='Россия уходит от болонской системы образования',type_post='N',rating_news=7,user_id=2)
+
+
+from News.models import PostCategory
+PostCategory.objects.create(category_name_id=2,post_id=1) 
+PostCategory.objects.create(category_name_id=1,post_id=2) 
+PostCategory.objects.create(category_name_id=3,post_id=3)
+PostCategory.objects.create(category_name_id=4,post_id=3)  
+
+
+from News.models import Comment
+Comment.objects.create(comment_text='комментарий хороший №1',rating_comment=10,post_id=1,user_id=1)
+Comment.objects.create(comment_text='комментарий не очень хороший №2',rating_comment=7,post_id=2,user_id=1)
+Comment.objects.create(comment_text='комментарий самый  не хороший №3',rating_comment=1,post_id=3,user_id=2)
+Comment.objects.create(comment_text='комментарий плохой №4',rating_comment=3,post_id=1,user_id=2)
+
+
+Post.objects.get(pk=1).like()                       
+Post.objects.get(pk=2).dislike() 
+Post.objects.get(pk=3).dislike() 
+Comment.objects.get(pk=1).like() 
+Comment.objects.get(pk=2).dislike()  
+Comment.objects.get(pk=3).like()
+Comment.objects.get(pk=4).like()
+
+
+Author.objects.get(pk=1).update_rating()
+Author.objects.get(pk=2).update_rating()  
+
+
+User.objects.filter(id=Author.objects.order_by('-rating_author').values('id').first()['id']).values('username')
+
+
+Post.objects.order_by('-rating_news').values('date_time_create').first()
+User.objects.filter(id=Post.objects.order_by('-rating_news').values('user_id').first()['user_id']).values('username')
+Post.objects.order_by('-rating_news').values('rating_news').first()
+Post.objects.get(pk=Post.objects.order_by('-rating_news').values('id').first()['id']).preview()
+
+
+Comment.objects.filter(post_id=Post.objects.order_by('-rating_news').values('id').first()['id']).values('date_create')
+User.objects.filter(id=Post.objects.order_by('-rating_news').values('user_id').first()['user_id']).values('username')
+Comment.objects.filter(post_id=Post.objects.order_by('-rating_news').values('id').first()['id']).values('rating_comment')
+Comment.objects.filter(post_id=Post.objects.order_by('-rating_news').values('id').first()['id']).values('comment_text')
+
+
+
+
+
+
+comment_rating = Comment.objects.filter(user_id=1).aggregate(Sum('rating_comment'))
+
+all_post_rating = Post.objects.filter(user_id=2).aggregate(Sum('rating_news'))*3 
+  all_post_rating['rating_news__sum']*3 
+
+
+s_comment_rating=  Post.objects.filter(user_id=1,type_post='S').aggregate(Sum('rating_news'))  
+
+Post.objects.select_related("blog").get(id=1)
+Comment.objects.select_related('Post').all()
+
+c=Comment.objects.select_related('post').filter(user_id=1)
+c[0].rating_comment
+
+p1=Post.objects.filter(type_post='S').filter(user_id=1) 
+
+p=Post.objects.filter(user_id=1).aggregate(Sum('rating_news')) 
+
+ p=Post.objects.filter(user_id=1).values('id') 
+
+n=Comment.objects.filter(post__in=p).aggregate(Sum('rating_comment'))   
+
+n=Comment.objects.filter(post__in=Post.objects.filter(user_id=1).values('id')).aggregate(Sum('rating_comment')) 
+
+n=auth_user.objects.filter(post__in=Author.objects.order_by('rating_author').values('id').first())
+
+n=User.objects.filter(post__in=Author.objects.order_by('-rating_author').values('id')).values('username') 
+>>>>>>> 7da4b100c138a2a11a514b7030b70c006625c7e1
