@@ -226,6 +226,12 @@ LOGGING = {
         },
     },
     'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'formatter': 'file',
+            'filename': BASE_DIR/'log.log'
+        },
         'console': {
             'class': 'logging.StreamHandler',
             'filters': ['require_debug_true'],
@@ -241,7 +247,7 @@ LOGGING = {
         'errors': {
             'level': 'ERROR',
             'class': 'logging.FileHandler',
-            'formatter': 'errors',
+            'formatter': 'error',
             'filename': BASE_DIR/'errors.log'
         },
         'security': {
@@ -256,42 +262,38 @@ LOGGING = {
             'class': 'django.utils.log.AdminEmailHandler',
             'filters': ['require_debug_false'],
             'formatter': 'mail_admins'
-
+        },
     },
     'loggers': {
-        '': {
-            'level': 'DEBUG',
-            'handlers': ['console', 'file']
-        },
         'django': {
-            'handlers': ['console'],
-            'propagate': True,
+                'handlers': ['console', 'file'],
+                'level': 'DEBUG',
+                'propagate': False,
         },
         'django.request': {
-            'handlers': ['errors','mail_admins'],
-            'level': 'ERROR',
-            'propagate': False,
+                'handlers': ['errors', 'mail_admins'],
+                'level': 'ERROR',
+                'propagate': False,
         },
         'django.server': {
-            'handlers': ['errors','mail_admins'],
-            'level': 'ERROR',
-            'propagate': False,
+                'handlers': ['errors', 'mail_admins'],
+                'level': 'ERROR',
+                'propagate': False,
         },
         'django.template': {
-            'handlers': ['errors'],
-            'level': 'ERROR',
-            'propagate': False,
+                'handlers': ['errors'],
+                'level': 'ERROR',
+                'propagate': False,
         },
         'django.db.backends': {
-            'handlers': ['errors'],
-            'level': 'ERROR',
-            'propagate': False,
+                'handlers': ['errors'],
+                'level': 'ERROR',
+                'propagate': False,
         },
         'django.security': {
-            'handlers': ['security'],
-            'level': 'ERROR',
-            'propagate': False,
+                'handlers': ['security'],
+                'level': 'ERROR',
+                'propagate': False,
         }
     }
-}
 }

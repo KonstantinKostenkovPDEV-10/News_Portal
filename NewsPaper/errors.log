@@ -1,0 +1,48 @@
+2023-01-21 22:27:44,258 ERROR Internal Server Error: /sign/accounts/google/login/ C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\django\utils\log.py (<class 'allauth.socialaccount.models.SocialApp.DoesNotExist'>, DoesNotExist('SocialApp matching query does not exist.'), <traceback object at 0x0000025B1F8B7648>)
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\allauth\socialaccount\providers\oauth2\views.py", line 80, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\allauth\socialaccount\providers\base\mixins.py", line 18, in dispatch
+    return self.login(request, *args, **kwargs)
+  File "C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\allauth\socialaccount\providers\oauth2\views.py", line 108, in login
+    app = provider.get_app(self.request)
+  File "C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\allauth\socialaccount\providers\base\provider.py", line 30, in get_app
+    return adapter.get_app(request, self.id)
+  File "C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\allauth\socialaccount\adapter.py", line 204, in get_app
+    app = SocialApp.objects.get_current(provider, request)
+  File "C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\allauth\socialaccount\models.py", line 31, in get_current
+    app = self.get(sites__id=site.id, provider=provider)
+  File "C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\django\db\models\query.py", line 437, in get
+    self.model._meta.object_name
+allauth.socialaccount.models.SocialApp.DoesNotExist: SocialApp matching query does not exist.
+2023-01-21 22:27:44,260 ERROR "POST /sign/accounts/google/login/ HTTP/1.1" 500 108072 C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\servers\basehttp.py None
+2023-01-21 22:36:31,812 ERROR Internal Server Error: /sign/accounts/google/login/ C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\django\utils\log.py (<class 'allauth.socialaccount.models.SocialApp.DoesNotExist'>, DoesNotExist('SocialApp matching query does not exist.'), <traceback object at 0x0000023F89F1B248>)
+Traceback (most recent call last):
+  File "C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\allauth\socialaccount\providers\oauth2\views.py", line 80, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\allauth\socialaccount\providers\base\mixins.py", line 18, in dispatch
+    return self.login(request, *args, **kwargs)
+  File "C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\allauth\socialaccount\providers\oauth2\views.py", line 108, in login
+    app = provider.get_app(self.request)
+  File "C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\allauth\socialaccount\providers\base\provider.py", line 30, in get_app
+    return adapter.get_app(request, self.id)
+  File "C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\allauth\socialaccount\adapter.py", line 204, in get_app
+    app = SocialApp.objects.get_current(provider, request)
+  File "C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\allauth\socialaccount\models.py", line 31, in get_current
+    app = self.get(sites__id=site.id, provider=provider)
+  File "C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\django\db\models\query.py", line 437, in get
+    self.model._meta.object_name
+allauth.socialaccount.models.SocialApp.DoesNotExist: SocialApp matching query does not exist.
+2023-01-21 22:36:31,813 ERROR "POST /sign/accounts/google/login/ HTTP/1.1" 500 108432 C:\Users\admin\PycharmProjects\NewsPortal\venv\lib\site-packages\django\core\servers\basehttp.py None
